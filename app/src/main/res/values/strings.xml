@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Movie App</string>
+    <string name="text_details">Detalhes do filme</string>
+    <string name="text_movie_votes" formatted="true">Nota %1$.1f (%2$d votos)</string>
 </resources>
