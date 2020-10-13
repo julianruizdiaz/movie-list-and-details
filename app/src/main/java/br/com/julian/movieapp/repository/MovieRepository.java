@@ -3,6 +3,7 @@ package br.com.julian.movieapp.repository;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import br.com.julian.movieapp.BuildConfig;
 import br.com.julian.movieapp.models.MovieModel;
 import br.com.julian.movieapp.models.ResponseModel;
 import br.com.julian.movieapp.network.MovieAPI;
@@ -20,8 +21,7 @@ public class MovieRepository {
     public LiveData<ResponseModel<MovieModel>> apiGetMovieList() {
         MutableLiveData<ResponseModel<MovieModel>> responseData = new MutableLiveData<>();
 
-        //TODO change api key location
-        Call<ResponseModel<MovieModel>> call = getMovieListService().getList("83b6ecc3cf461e3f847fdd219e771163", "pt-BR");
+        Call<ResponseModel<MovieModel>> call = getMovieListService().getList(BuildConfig.API_KEY, "pt-BR");
 
         call.enqueue(new Callback<ResponseModel<MovieModel>>() {
             @Override

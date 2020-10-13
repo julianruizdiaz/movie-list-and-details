@@ -6,6 +6,8 @@
         <variable
             name="viewModel"
             type="br.com.julian.movieapp.ui.movieDetails.MovieDetailsViewModel" />
+
+        <import type="br.com.julian.movieapp.util.DateUtil" />
     </data>
 
     <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
@@ -33,6 +35,7 @@
 
                     <TextView
                         android:id="@+id/text_view_movie_details_title"
+                        style="@style/movie_title_style"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@{viewModel.movieModel.title}"
@@ -42,17 +45,16 @@
 
                     <TextView
                         android:id="@+id/text_view_movie_details_original_title"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@{viewModel.movieModel.originalTitle}"
+                        style="@style/movie_details_style"
                         app:layout_constraintStart_toStartOf="@+id/text_view_movie_details_title"
                         app:layout_constraintTop_toBottomOf="@+id/text_view_movie_details_title"
+                        app:originalTitleFormat="@{viewModel.movieModel.originalTitle}"
                         tools:text="Original Title" />
 
                     <TextView
                         android:id="@+id/text_view_movie_details_vote_count"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        style="@style/movie_details_style"
+                        android:layout_marginTop="@dimen/default_margin"
                         app:layout_constraintStart_toStartOf="@+id/text_view_movie_details_original_title"
                         app:layout_constraintTop_toBottomOf="@+id/text_view_movie_details_original_title"
                         app:votesFormat="@{viewModel.movieModel}"
@@ -60,20 +62,24 @@
 
                     <TextView
                         android:id="@+id/text_view_movie_details_release_date"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@{viewModel.movieModel.releaseDate}"
+                        style="@style/movie_details_style"
+                        android:layout_marginTop="@dimen/default_margin"
+                        app:dateCondition="@{viewModel.movieModel.hasReleaseDate()}"
+                        app:dateDefault="@{@string/text_no_release_date}"
+                        app:dateFormatFrom="@{DateUtil.yyyyMMdd}"
+                        app:dateFormatTo="@{DateUtil.ddMMyyyy}"
+                        app:dateString="@{viewModel.movieModel.releaseDate}"
                         app:layout_constraintStart_toStartOf="@+id/text_view_movie_details_vote_count"
                         app:layout_constraintTop_toBottomOf="@+id/text_view_movie_details_vote_count"
                         tools:text="Release date" />
 
                     <TextView
                         android:id="@+id/text_view_movie_details_overview"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@{viewModel.movieModel.overview}"
+                        style="@style/movie_details_style"
+                        android:layout_marginTop="@dimen/default_margin"
                         app:layout_constraintStart_toStartOf="@+id/text_view_movie_details_release_date"
                         app:layout_constraintTop_toBottomOf="@+id/text_view_movie_details_release_date"
+                        app:overviewFormat="@{viewModel.movieModel.overview}"
                         tools:text="Overview" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>

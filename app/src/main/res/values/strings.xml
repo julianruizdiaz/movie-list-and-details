@@ -1,5 +1,10 @@
 <resources>
     <string name="app_name">Movie App</string>
     <string name="text_details">Detalhes do filme</string>
+    <string name="text_no_release_date">Sem data de lançamento</string>
+    <string name="text_no_movies_to_show">Nenhum filme para exibir</string>
+    <string name="text_movie_original_title" formatted="true">(%1$s)</string>
+    <string name="text_movie_release_date" formatted="true">Lançamento: %1$s</string>
+    <string name="text_movie_overview" formatted="true">Sinopse:\n%1$s</string>
     <string name="text_movie_votes" formatted="true">Nota %1$.1f (%2$d votos)</string>
 </resources>

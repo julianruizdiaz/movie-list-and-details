@@ -23,6 +23,10 @@ public class MovieModel implements Parcelable {
     @SerializedName("release_date")
     String releaseDate;
 
+    public Boolean hasReleaseDate() {
+        return this.releaseDate != null;
+    }
+
     public Integer getMovieId() {
         return movieId;
     }
@@ -54,6 +58,8 @@ public class MovieModel implements Parcelable {
     public String getReleaseDate() {
         return releaseDate;
     }
+
+    public MovieModel() {}
 
     protected MovieModel(Parcel in) {
         movieId = in.readByte() == 0x00 ? null : in.readInt();

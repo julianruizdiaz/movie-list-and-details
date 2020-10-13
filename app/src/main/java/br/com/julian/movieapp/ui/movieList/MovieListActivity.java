@@ -2,6 +2,7 @@ package br.com.julian.movieapp.ui.movieList;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
@@ -15,12 +16,12 @@ public class MovieListActivity extends AppCompatActivity {
 
     private MovieListViewModel mMovieListViewModel;
     private RecyclerView mRecyclerViewMovieList;
-    private MovieListAdapter mAdapter;
+    private ActivityMovieListBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ActivityMovieListBinding binding = ActivityMovieListBinding.inflate(getLayoutInflater());
+        binding = ActivityMovieListBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         binding.setLifecycleOwner(this);
 
@@ -31,15 +32,15 @@ public class MovieListActivity extends AppCompatActivity {
     }
 
     private void addObservers() {
-        mMovieListViewModel.getApiResponse().observe(this, movieModelResponseModel -> {
-        });
+        mMovieListViewModel.getApiResponse().observe(this, movieModelResponseModel -> {});
 
         mMovieListViewModel.getMovieList().observe(this, movieList -> {
-            if (movieList != null) {
-                mAdapter = new MovieListAdapter(movieList, mMovieListViewModel);
-                mRecyclerViewMovieList.setAdapter(mAdapter);
+            if (movieList != null && movieList.size() > 0) {
+                MovieListAdapter movieListAdapter = new MovieListAdapter(movieList, mMovieListViewModel);
+                mRecyclerViewMovieList.setAdapter(movieListAdapter);
+                showRecyclerView(true);
             } else {
-                //TODO add empty view
+                showRecyclerView(false);
             }
         });
 
@@ -57,9 +58,18 @@ public class MovieListActivity extends AppCompatActivity {
         });
     }
 
+    private void showRecyclerView(Boolean show) {
+        if (show) {
+            binding.recyclerViewMovieList.setVisibility(View.VISIBLE);
+            binding.emptyListView.setVisibility(View.GONE);
+        } else {
+            binding.recyclerViewMovieList.setVisibility(View.GONE);
+            binding.emptyListView.setVisibility(View.VISIBLE);
+        }
+    }
+
     private void configureRecyclerView(ActivityMovieListBinding binding) {
         mRecyclerViewMovieList = binding.recyclerViewMovieList;
-        mRecyclerViewMovieList.setHasFixedSize(true);
         mRecyclerViewMovieList.setLayoutManager(new LinearLayoutManager(this));
     }
 }

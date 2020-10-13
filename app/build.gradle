@@ -19,9 +19,17 @@ android {
     }
 
     buildTypes {
+        debug {
+            buildConfigField("String", "BASE_URL", "\"https://api.themoviedb.org/3/\"")
+            buildConfigField("String", "API_KEY", "\"83b6ecc3cf461e3f847fdd219e771163\"")
+            buildConfigField("String", "LIST_ID", "\"7061507\"")
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField("String", "BASE_URL", "\"https://api.themoviedb.org/3/\"")
+            buildConfigField("String", "API_KEY", "\"83b6ecc3cf461e3f847fdd219e771163\"")
+            buildConfigField("String", "LIST_ID", "\"7061507\"")
         }
     }
 
@@ -46,11 +54,13 @@ dependencies {
 
     // ViewModel
     implementation "androidx.lifecycle:lifecycle-viewmodel:$lifecycle_version"
+    
     // LiveData
     implementation "androidx.lifecycle:lifecycle-livedata:$lifecycle_version"
 
     //RecyclerView
     implementation "androidx.recyclerview:recyclerview:1.1.0"
+
     //CardView
     implementation "androidx.cardview:cardview:1.0.0"
 }

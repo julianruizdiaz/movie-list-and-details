@@ -8,7 +8,7 @@ import br.com.julian.movieapp.models.MovieModel;
 
 public class MovieDetailsViewModel extends ViewModel {
 
-    private MutableLiveData<MovieModel> mMovieModel = new MutableLiveData<>();
+    private MutableLiveData<MovieModel> mMovieModel = new MutableLiveData<>(new MovieModel());
 
     public LiveData<MovieModel> getMovieModel() {
         return mMovieModel;
