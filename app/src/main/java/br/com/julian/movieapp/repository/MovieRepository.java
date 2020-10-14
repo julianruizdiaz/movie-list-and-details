@@ -3,6 +3,8 @@ package br.com.julian.movieapp.repository;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import org.jetbrains.annotations.NotNull;
+
 import br.com.julian.movieapp.BuildConfig;
 import br.com.julian.movieapp.models.MovieModel;
 import br.com.julian.movieapp.models.ResponseModel;
@@ -25,12 +27,12 @@ public class MovieRepository {
 
         call.enqueue(new Callback<ResponseModel<MovieModel>>() {
             @Override
-            public void onResponse(Call<ResponseModel<MovieModel>> call, Response<ResponseModel<MovieModel>> response) {
+            public void onResponse(@NotNull Call<ResponseModel<MovieModel>> call, @NotNull Response<ResponseModel<MovieModel>> response) {
                 responseData.postValue(response.body());
             }
 
             @Override
-            public void onFailure(Call<ResponseModel<MovieModel>> call, Throwable t) {
+            public void onFailure(@NotNull Call<ResponseModel<MovieModel>> call, @NotNull Throwable t) {
                 responseData.postValue(null);
             }
         });

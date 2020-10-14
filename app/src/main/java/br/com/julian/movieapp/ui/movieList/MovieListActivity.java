@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import br.com.julian.movieapp.R;
 import br.com.julian.movieapp.databinding.ActivityMovieListBinding;
 import br.com.julian.movieapp.ui.movieDetails.MovieDetailsActivity;
 
@@ -16,18 +17,18 @@ public class MovieListActivity extends AppCompatActivity {
 
     private MovieListViewModel mMovieListViewModel;
     private RecyclerView mRecyclerViewMovieList;
-    private ActivityMovieListBinding binding;
+    private ActivityMovieListBinding mBinding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityMovieListBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
-        binding.setLifecycleOwner(this);
+        mBinding = ActivityMovieListBinding.inflate(getLayoutInflater());
+        setContentView(mBinding.getRoot());
+        mBinding.setLifecycleOwner(this);
 
         mMovieListViewModel = new ViewModelProvider(this).get(MovieListViewModel.class);
 
-        configureRecyclerView(binding);
+        configureRecyclerView(mBinding);
         addObservers();
     }
 
@@ -47,7 +48,9 @@ public class MovieListActivity extends AppCompatActivity {
         mMovieListViewModel.getListName().observe(this, listName -> {
             if (getSupportActionBar() != null) {
                 if (listName != null) {
-                    getSupportActionBar().setSubtitle(listName);
+                    getSupportActionBar().setSubtitle(
+                            this.getString(R.string.text_subtitle_list_name, listName)
+                    );
                 }
             }
         });
@@ -60,11 +63,11 @@ public class MovieListActivity extends AppCompatActivity {
 
     private void showRecyclerView(Boolean show) {
         if (show) {
-            binding.recyclerViewMovieList.setVisibility(View.VISIBLE);
-            binding.emptyListView.setVisibility(View.GONE);
+            mBinding.recyclerViewMovieList.setVisibility(View.VISIBLE);
+            mBinding.emptyListView.setVisibility(View.GONE);
         } else {
-            binding.recyclerViewMovieList.setVisibility(View.GONE);
-            binding.emptyListView.setVisibility(View.VISIBLE);
+            mBinding.recyclerViewMovieList.setVisibility(View.GONE);
+            mBinding.emptyListView.setVisibility(View.VISIBLE);
         }
     }
 

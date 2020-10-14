@@ -14,8 +14,6 @@ import br.com.julian.movieapp.models.MovieModel;
 public class MovieDetailsActivity extends AppCompatActivity {
     private static final String MOVIE_MODEL_BUNDLE_KEY = "movie_model";
 
-    private MovieDetailsViewModel mMovieDetailsViewModel;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,15 +21,13 @@ public class MovieDetailsActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         binding.setLifecycleOwner(this);
 
-        mMovieDetailsViewModel = new ViewModelProvider(this).get(MovieDetailsViewModel.class);
+        MovieDetailsViewModel mMovieDetailsViewModel = new ViewModelProvider(this).get(MovieDetailsViewModel.class);
         binding.setViewModel(mMovieDetailsViewModel);
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             MovieModel movieModel = extras.getParcelable(MOVIE_MODEL_BUNDLE_KEY);
             mMovieDetailsViewModel.init(movieModel);
-        } else {
-            //TODO show error loading details
         }
 
         configureActionBar();

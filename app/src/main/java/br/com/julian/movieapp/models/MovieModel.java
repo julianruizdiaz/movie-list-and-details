@@ -27,20 +27,12 @@ public class MovieModel implements Parcelable {
         return this.releaseDate != null;
     }
 
-    public Integer getMovieId() {
-        return movieId;
-    }
-
     public String getTitle() {
         return title;
     }
 
     public String getOriginalTitle() {
         return originalTitle;
-    }
-
-    public String getPosterPath() {
-        return posterPath;
     }
 
     public Integer getVoteCount() {

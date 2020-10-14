@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="default_margin">16dp</dimen>
-    <dimen name="default_margin_0_5x">8dp</dimen>
     <dimen name="default_card_corner_radius">6dp</dimen>
 
-    <dimen name="text_size_subhead">@dimen/abc_text_size_subhead_material</dimen> <!-- 16sp -->
-    <dimen name="text_size_medium">@dimen/abc_text_size_medium_material</dimen> <!-- 18sp -->
+    <!-- 16sp -->
+    <!-- 18sp -->
     <dimen name="text_size_title_material">@dimen/abc_text_size_title_material</dimen> <!-- 20sp -->
-    <dimen name="text_size_large">@dimen/abc_text_size_large_material</dimen> <!-- 22sp -->
-    <dimen name="text_size_headline">@dimen/abc_text_size_headline_material</dimen> <!-- 24sp -->
+    <!-- 22sp -->
+    <!-- 24sp -->
 </resources>

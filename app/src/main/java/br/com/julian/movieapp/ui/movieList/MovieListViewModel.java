@@ -37,17 +37,17 @@ public class MovieListViewModel extends ViewModel {
     public MovieListViewModel() {
         MovieRepository movieRepository = new MovieRepository();
 
-        mApiResponse.addSource(movieRepository.apiGetMovieList(), movieModelResponseModel -> {
-            if (movieModelResponseModel != null) {
-                mMovieList.postValue(movieModelResponseModel.getItems());
-                mListName.postValue(movieModelResponseModel.getListName());
+        mApiResponse.addSource(movieRepository.apiGetMovieList(), responseModel -> {
+            if (responseModel != null) {
+                mMovieList.postValue(responseModel.getItems());
+                mListName.postValue(responseModel.getListName());
             } else {
                 mMovieList.postValue(null);
             }
         });
     }
 
-    public void onItemClick(MovieModel movieModel) {
+    public void viewMovieDetails(MovieModel movieModel) {
         mViewMovieDetails.postValue(movieModel);
     }
 }
