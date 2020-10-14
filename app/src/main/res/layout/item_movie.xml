@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <variable
+            name="movieModel"
+            type="br.com.julian.movieapp.models.MovieModel" />
+
+        <variable
+            name="viewModel"
+            type="br.com.julian.movieapp.ui.movieList.MovieListViewModel" />
+
+        <import type="br.com.julian.movieapp.util.DateUtil" />
+    </data>
+
+    <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="@{() -> viewModel.viewMovieDetails(movieModel)}"
+        app:cardCornerRadius="@dimen/default_card_corner_radius"
+        app:cardElevation="@dimen/default_card_corner_radius"
+        app:cardUseCompatPadding="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/default_margin">
+
+            <TextView
+                android:id="@+id/text_view_item_movie_title"
+                style="@style/movie_title_style"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@{movieModel.title}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Teste" />
+
+            <TextView
+                android:id="@+id/text_view_item_movie_vote_count"
+                style="@style/movie_details_style"
+                android:layout_marginTop="@dimen/default_margin"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/text_view_item_movie_title"
+                app:votesFormat="@{movieModel}"
+                tools:text="Teste" />
+
+            <TextView
+                android:id="@+id/text_view_item_movie_release_date"
+                style="@style/movie_details_style"
+                android:layout_marginTop="@dimen/default_margin"
+                app:dateCondition="@{movieModel.hasReleaseDate()}"
+                app:dateDefault="@{@string/text_no_release_date}"
+                app:dateFormatFrom="@{DateUtil.yyyyMMdd}"
+                app:dateFormatTo="@{DateUtil.ddMMyyyy}"
+                app:dateString="@{movieModel.releaseDate}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/text_view_item_movie_vote_count"
+                tools:text="Teste" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</layout>

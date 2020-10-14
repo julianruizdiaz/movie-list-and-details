@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="br.com.julian.movieapp.ui.movieDetails.MovieDetailsViewModel" />
+
+        <import type="br.com.julian.movieapp.util.DateUtil" />
+    </data>
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.movieDetails.MovieDetailsActivity">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/default_margin"
+                app:cardCornerRadius="@dimen/default_card_corner_radius"
+                app:cardElevation="@dimen/default_card_corner_radius"
+                app:cardUseCompatPadding="true">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="@dimen/default_margin">
+
+                    <TextView
+                        android:id="@+id/text_view_movie_details_title"
+                        style="@style/movie_title_style"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@{viewModel.movieModel.title}"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="Title" />
+
+                    <TextView
+                        android:id="@+id/text_view_movie_details_original_title"
+                        style="@style/movie_details_style"
+                        app:layout_constraintStart_toStartOf="@+id/text_view_movie_details_title"
+                        app:layout_constraintTop_toBottomOf="@+id/text_view_movie_details_title"
+                        app:originalTitleFormat="@{viewModel.movieModel.originalTitle}"
+                        tools:text="Original Title" />
+
+                    <TextView
+                        android:id="@+id/text_view_movie_details_vote_count"
+                        style="@style/movie_details_style"
+                        android:layout_marginTop="@dimen/default_margin"
+                        app:layout_constraintStart_toStartOf="@+id/text_view_movie_details_original_title"
+                        app:layout_constraintTop_toBottomOf="@+id/text_view_movie_details_original_title"
+                        app:votesFormat="@{viewModel.movieModel}"
+                        tools:text="Votes and average" />
+
+                    <TextView
+                        android:id="@+id/text_view_movie_details_release_date"
+                        style="@style/movie_details_style"
+                        android:layout_marginTop="@dimen/default_margin"
+                        app:dateCondition="@{viewModel.movieModel.hasReleaseDate()}"
+                        app:dateDefault="@{@string/text_no_release_date}"
+                        app:dateFormatFrom="@{DateUtil.yyyyMMdd}"
+                        app:dateFormatTo="@{DateUtil.ddMMyyyy}"
+                        app:dateString="@{viewModel.movieModel.releaseDate}"
+                        app:layout_constraintStart_toStartOf="@+id/text_view_movie_details_vote_count"
+                        app:layout_constraintTop_toBottomOf="@+id/text_view_movie_details_vote_count"
+                        tools:text="Release date" />
+
+                    <TextView
+                        android:id="@+id/text_view_movie_details_overview"
+                        style="@style/movie_details_style"
+                        android:layout_marginTop="@dimen/default_margin"
+                        app:layout_constraintStart_toStartOf="@+id/text_view_movie_details_release_date"
+                        app:layout_constraintTop_toBottomOf="@+id/text_view_movie_details_release_date"
+                        app:overviewFormat="@{viewModel.movieModel.overview}"
+                        tools:text="Overview" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+    </ScrollView>
+</layout>

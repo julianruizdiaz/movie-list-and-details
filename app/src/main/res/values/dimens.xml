@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="default_margin">16dp</dimen>
+    <dimen name="default_card_corner_radius">6dp</dimen>
+
+    <!-- 16sp -->
+    <!-- 18sp -->
+    <dimen name="text_size_title_material">@dimen/abc_text_size_title_material</dimen> <!-- 20sp -->
+    <!-- 22sp -->
+    <!-- 24sp -->
+</resources>
